@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- ============================================================
+         PARENT — Spring Boot manages all version numbers for you.
+         You don't need to specify versions for most dependencies.
+    ============================================================ -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.5</version>
+        <relativePath/>
+    </parent>
+
+    <!-- ============================================================
+         PROJECT IDENTITY
+         groupId  = your company/package name (reversed domain style)
+         artifactId = your project name
+         version  = current version of your app
+    ============================================================ -->
+    <groupId>com.cakebox</groupId>
+    <artifactId>cakebox-backend</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>cakebox-backend</name>
+    <description>CakeBox - Cake E-Commerce Backend API</description>
+    <packaging>jar</packaging>
+
+    <properties>
+        <java.version>21</java.version>
+    </properties>
+
+    <dependencies>
+
+        <!-- ========================================================
+             1. SPRING WEB
+             What it does: Lets you create REST API endpoints
+             (@RestController, @GetMapping, @PostMapping, etc.)
+        ======================================================== -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- ========================================================
+             2. SPRING DATA JPA
+             What it does: Lets you talk to MySQL database using
+             Java objects instead of raw SQL queries.
+             JPA = Java Persistence API
+        ======================================================== -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- ========================================================
+             3. MYSQL DRIVER
+             What it does: The connector that allows Java to
+             communicate with your MySQL database.
+        ======================================================== -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- ========================================================
+             4. SPRING SECURITY
+             What it does: Handles login, logout, JWT token
+             validation, role-based access (USER vs ADMIN).
+        ======================================================== -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!-- ========================================================
+             5. VALIDATION
+             What it does: Lets you validate incoming data.
+             Example: @NotBlank on email, @Size(min=6) on password.
+        ======================================================== -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!-- ========================================================
+             6. LOMBOK
+             What it does: Auto-generates boilerplate Java code.
+             Instead of writing getters/setters manually, you just
+             add @Data to a class and Lombok generates them.
+        ======================================================== -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- ========================================================
+             7. DEVTOOLS
+             What it does: Hot reload — when you save a Java file,
+             the server restarts automatically. Saves time.
+        ======================================================== -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- ========================================================
+             8. SPRING BOOT TEST
+             What it does: Testing framework. Auto-included.
+        ======================================================== -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- ========================================================
+             9. JWT (JSON Web Token) — ADDED MANUALLY
+             What it does: Creates and validates login tokens.
+             When a user logs in, we give them a JWT token.
+             They send this token with every request to prove
+             they are logged in.
+             NOTE: This is NOT on Spring Initializr. We add it here.
+        ======================================================== -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.12.3</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.12.3</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.12.3</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- ========================================================
+             10. CLOUDINARY — ADDED MANUALLY
+             What it does: Uploads images to Cloudinary cloud.
+             Used for cake product photos and custom cake uploads.
+        ======================================================== -->
+        <dependency>
+            <groupId>com.cloudinary</groupId>
+            <artifactId>cloudinary-http44</artifactId>
+            <version>1.38.0</version>
+        </dependency>
+
+        <!-- ========================================================
+             11. RAZORPAY — ADDED MANUALLY
+             What it does: Creates payment orders and verifies
+             payment signatures from Razorpay gateway.
+        ======================================================== -->
+        <dependency>
+            <groupId>com.razorpay</groupId>
+            <artifactId>razorpay-java</artifactId>
+            <version>1.4.5</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Spring Boot Maven Plugin — packages app into a runnable JAR -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!-- Exclude Lombok from final JAR (it's only needed at compile time) -->
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
