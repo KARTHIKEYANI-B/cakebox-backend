@@ -1,23 +1,11 @@
-# =============================================================
-# .gitignore for CakeBox Backend
-# FILE: cakebox-backend/.gitignore
-#
-# Files listed here will NOT be uploaded to GitHub.
-# This protects your passwords and API keys.
-# =============================================================
-
-# Maven build output (generated files, not your code)
+# Maven build output
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-# application.properties contains your DB password + API keys
-# IMPORTANT: We'll use environment variables on Railway instead
-src/main/resources/application.properties
-
-# But keep the template so others know what config is needed
-!src/main/resources/application.properties.example
+# Local config (contains secrets)
+src/main/resources/application-local.properties
 
 # IDE files
 .idea/
@@ -33,6 +21,6 @@ src/main/resources/application.properties
 .DS_Store
 Thumbs.db
 
-# Log files
+# Logs
 *.log
 logs/
