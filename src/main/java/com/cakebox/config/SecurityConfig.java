@@ -126,10 +126,10 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         // Allow requests from React dev server + production domain
-        configuration.setAllowedOrigins(Arrays.asList(
-                "http://localhost:5173",   // Vite React dev server
-                "http://localhost:3000",   // Create React App (just in case)
-                "https://cakebox.vercel.app" // Your production domain (update this later)
+       configuration.setAllowedOrigins(Arrays.asList(
+            "http://localhost:5173",
+            "https://cakebox-frontend.vercel.app",
+            "https://*.vercel.app"
         ));
 
         // Allow these HTTP methods
