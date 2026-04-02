@@ -128,8 +128,7 @@ public class SecurityConfig {
         // Allow requests from React dev server + production domain
        configuration.setAllowedOrigins(Arrays.asList(
             "http://localhost:5173",
-            "https://cakebox-frontend.vercel.app",
-            "https://*.vercel.app"
+            "https://cakebox-frontend.vercel.app"   // your exact Vercel URL
         ));
 
         // Allow these HTTP methods
