@@ -1,0 +1,14 @@
+# .dockerignore
+# Speeds up Docker build by ignoring unnecessary files
+
+target/
+*.class
+*.jar
+.git/
+.gitignore
+.idea/
+*.iml
+.vscode/
+node_modules/
+*.log
+README.md
